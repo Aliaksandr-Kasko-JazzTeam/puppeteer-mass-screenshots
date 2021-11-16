@@ -26,6 +26,7 @@ class PuppeteerMassScreenshots {
         this.page = page;
         this.outputFolder = outputFolder;
         this.client = await this.page.target().createCDPSession();
+        await this.client.send('HeadlessExperimental.enable');
         this.canScreenshot = true;
         this.client.on('Page.screencastFrame', async (frameObject) => {
             if (this.canScreenshot) {
